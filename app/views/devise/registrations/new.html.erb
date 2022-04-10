@@ -1,0 +1,91 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+
+<table>
+  <tr>
+    <th>last_name</th>
+    <th>first_name</th>
+  </tr>
+  <tr>
+    <td>
+      <div class="field">
+        <%= f.text_field :last_name %>
+  </div>
+    </td>
+    <td>
+      <div class="field">
+        <%= f.text_field :first_name %><br>
+  </div>
+    </td>
+  </tr>
+
+  <tr>
+    <th>last_name_kana</th>
+    <th>first_name_kana</th>
+  </tr>
+  <tr>
+    <td><%= f.text_field :last_name_kana %></td>
+    <td><%= f.text_field :first_name_kana %></td>
+  </tr>
+  
+  <tr>
+    <th>email</th>
+  </tr>
+  <tr>
+    <td><%= f.email_field :email, autocomplete: "email" %></td>
+  </tr>
+  
+  <tr>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br>
+    
+    <th>password</th>
+  </tr>
+  <tr>
+    <td><%= f.password_field :password %></td>
+  </tr>
+  
+  
+  <tr>
+    <th>password_confirmation</th>
+  </tr>
+  <tr>
+    <td><%= f.password_field :password_confirmation %></td>
+  </tr>
+  
+  <tr>
+    <th>postal_code</th>
+  </tr>
+  <tr>
+    <td><%= f.email_field :postal_code %></td>
+  </tr>
+  
+  <tr>
+    <th>address</th>
+  </tr>
+  <tr>
+    <td><%= f.email_field :address %></td>
+  </tr>
+  
+  <tr>
+    <th>telephone_number</th>
+  </tr>
+  <tr>
+    <td><%= f.email_field :telephone_number %></td>
+  </tr>
+</table>
+
+
+
+
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
