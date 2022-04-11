@@ -2,13 +2,20 @@
 <html>
   <head></head>
   <body>
-    <h2>WELCOME TO Nagano_Cake Page</h2>
-    
+    <h2 class ="title">WELCOME TO Nagano_Cake Page</h2>
+    <%= link_to "Customer Sign In", new_customer_registration_path, class: "btn btn-warning btn-sm btn-block" %>
+    <%= link_to "Customer Log In", new_customer_session_path, class: "btn btn-danger btn-sm btn-block" %>
+
+
     <style>
       h2 {
         text-align: center;
         margin-top: 200px;
       }
+
+
+
+
     </style>
   </body>
 </html>

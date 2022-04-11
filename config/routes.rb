@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
   
-  # devise_for :admins
-  # devise_for :customers
+  resources :admins
+  resources :customers
   get 'orders_details/new'
   get 'orders_details/index'
   get 'orders_details/show'
@@ -33,18 +33,19 @@ Rails.application.routes.draw do
   get 'items/index'
   get 'items/show'
   get 'items/edit'
-  get 'admins/new'
-  get 'admins/index'
-  get 'admins/show'
-  get 'admins/edit'
-  get 'addresses/new'
-  get 'addresses/index'
-  get 'addresses/show'
-  get 'addresses/edit'
-  get 'customers/new'
-  get 'customers/index'
-  get 'customers/show'
-  get 'customers/edit'
+  # get 'admins/new'
+  # get 'admins/index'
+  # get 'admins/show'
+  # get 'admins/edit'
+  # get 'addresses/new'
+  # get 'addresses/index'
+  # get 'addresses/show'
+  # get 'addresses/edit'
+  # get 'customers/new'
+  # get 'customers/index'
+  # get 'customers/show'
+  # get 'customers/edit'
   root to: "homes#top"
+  get 'homes/about' => 'homes#about', as: "about"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

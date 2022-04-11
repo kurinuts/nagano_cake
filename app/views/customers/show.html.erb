@@ -1,1 +1,46 @@
-<h1>Customers#show</h1>
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <div class="container">  <!-- この行を追加 -->
+  <div class="row">
+    <div class="col-md-3">
+      <h1>お客様情報</h1>
+<table class="table table-striped">
+  <tr><th>name</th><td><%= @customer.last_name %></td></tr>
+  <tr><th>kana</th><td><%= @customer.last_name_kana %></td></tr>
+</table>
+
+
+
+<%= link_to edit_customer_path(@customer), class: "btn btn-secondary btn-block" do %>
+    <i class="fas fa-user-cog fa-lg"></i>
+<% end %>
+
+<!--link_toはデフォルトがGET なのでメソッドの指定はしないのが正解。deleteはメソッド指定が必要な場合もある-->
+
+  <div class="col-md-8 offset-md-1">
+
+      <h1>カート</h1>
+<table class="table table-striped">
+  <thead>
+    <th>image</th>
+    <th>name</th>
+    <th> </th>
+    <!--<th colspan="1"></th>-->
+  </thead>
+
+  <% @items.each do |item| %>
+  <tr>
+    <td>
+    <%= image_tag item.get_profile_image(50,50) %></td>
+    <td><%= item.name %></td>
+    <td><%= link_to "Show", item_show_path(item) %></td>
+  </tr>
+  <% end %>
+</table>
+  </div>
+  </div>
+  </div>
+  </div>
+

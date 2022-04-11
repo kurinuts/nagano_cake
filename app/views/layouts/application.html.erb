@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    
+    
+    
     <title>NaganoCake</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
@@ -16,7 +20,7 @@
     <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand p-3 text-white" href="/">nagano_cake</a>
+          <a class="navbar-brand p-3 text-white" href="/"><strong>Nagano Cake</strong></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -25,12 +29,22 @@
             <ul class="navbar-nav ml-auto">
             <% if customer_signed_in? %>
             <li class="nav-item">
-              <%= link_to "Log Out", destroy_customer_session_path, method: :delete, class: 'nav-link text-white' %>
+              <%= link_to "Home", root_path, class: 'nav-link text-white' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'My Page', customers_show_path(current_customer.id), class: 'nav-link text-white' %>
+              <%= link_to 'My Page', customer_path(current_customer.id), class: 'nav-link text-white' %>
             </li>
+            <li class="nav-item">
+              <%= link_to "Log Out", destroy_customer_session_path, method: :delete, class: 'nav-link text-white' %>
+            </li>
+            
             <% else %>
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "About", about_path, class: 'nav-link text-white' %>
+            </li>
             <li class="nav-item">
               <%= link_to "Sign Up", new_customer_registration_path, class: 'nav-link text-white' %>
             </li>
@@ -56,6 +70,17 @@
     
     <footer class="text-white pt-5 pb-4">
       <p>Have a delicious day</p>
+      
+      
+      
+      <% if customer_signed_in? %>
+      <%= link_to "Admin Log In", new_admin_session_path, class: "btn btn-outline-danger btn-sm btn-block" %>
+      <%= link_to "Admin Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-warning btn-sm btn-block" %>
+      
+      <% else %>
+      <%= link_to "Admin Sign In", new_admin_registration_path, class: "btn btn-outline-warning btn-sm btn-block" %>
+      <%= link_to "Admin Log In", new_admin_session_path, class: "btn btn-outline-danger btn-sm btn-block" %>
+      <% end %>
       <style>
       p {
         text-align: center;
@@ -64,6 +89,7 @@
       footer {
         background-color: tan;
       }
+      
       
       </style>
             
