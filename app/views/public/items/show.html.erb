@@ -1,0 +1,54 @@
+customers/items/show
+
+<html>
+  
+  <head>
+      <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  </head>
+  
+  
+  <body>
+    <div class="container">  <!-- この行を追加 -->
+    <div class="row">
+      <div class="col-md-3">
+        <h1>Customer info</h1>
+        <table class="table table-striped">
+          <tr><th>name</th><td><%= @customer.last_name %></td></tr>
+          <tr><th>introduction</th><td><%= @customer.last_name_kana %></td></tr>
+          </table>
+        <%= link_to edit_customer_path(@customer), class: "btn btn-secondary btn-block" do %>
+        <i class="fas fa-user-cog fa-lg"></i>
+        <% end %>
+
+<!--link_toはデフォルトがGET なのでメソッドの指定はしないのが正解。deleteはメソッド指定が必要な場合もある-->
+
+
+    <div class="col-md-8 offset-md-1">
+      <h1>Items</h1>
+      <table class="table table-striped">
+        <thead>
+          <th> </th>
+          <th>Name</th>
+          <th>Introduction</th>
+    <!--<th colspan="2"></th>-->
+        </thead>
+        
+        <% @items.each do |book| %>
+        <tr>
+          <td>
+            <%= link_to customer_path(@customer) do %>
+            <%= image_tag item.customer.get_profile_image(50,50) %>
+            <% end %></td>
+          <td>
+            <%= link_to item_path(item) do %>
+            <%= item.name %>
+            <% end %></td>
+          <td><%= item.introduction %></td>
+        </tr>
+        <% end %>
+      </table>
+      </div>
+      </div>
+    </div>
+  </body>
+</html>
