@@ -1,0 +1,10 @@
+<html>
+  <head></head>
+  <body>
+    <%= form_with model: @genre, url: admin_genres_path do |f| %>
+    <h4>name</h4>
+    <%= f.text_field :name %>
+    <%= f.submit 'create' %>
+    <% end %>
+  </body>
+</html>

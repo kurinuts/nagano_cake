@@ -4,16 +4,16 @@ Rails.application.routes.draw do
     sessions: 'public/sessions',
     registrations: 'public/registrations'
   }
-  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-    sessions: 'admin/sessions',
-    passwords: 'admin/passwords',
-    registrations: 'admin/registrations'
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
+    sessions: 'admin/sessions'
+    # passwords: 'admin/passwords',
+    # registrations: 'admin/registrations'
   }
 
   namespace :admin do
     resources :items
-    resources :sessions
-    resources :homes
+    # resources :sessions
+    get "homes" => "homes#top", as: "homes"
     resources :genres
     resources :customers
     resources :orders
@@ -22,17 +22,18 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :items
-    resources :homes
-    resources :registrations
-    resources :sessions
+    # resources :homes
+    # resources :registrations
+    # resources :sessions
     resources :customers
     resources :cart_items
     resources :orders
     resources :addresses
   end
 
-  resources :items
-  resources :customers
+  # resources :items
+  # resources :customers
+
   # get 'admins/new'
   # get 'admins/index'
   # get 'admins/show'
@@ -47,5 +48,7 @@ Rails.application.routes.draw do
   # get 'customers/edit'
   root to: "public/homes#top"
   get 'public/homes/about' => 'public/homes#about', as: "about"
+  # post 'sessions/admin' => 'admin/sessions'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
 end

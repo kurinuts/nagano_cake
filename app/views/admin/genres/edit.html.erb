@@ -1,0 +1,35 @@
+<hrml>
+  <head></head>
+  <body>
+    <h4>ジャンル編集</h4>
+    
+    <% if @genre.errors.any? %>
+  <%= @genre.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @genre.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+  <%= form_with model: @genres do |f| %>
+    <h4>ジャンル名</h4>
+    <span><%= f.text_field :name %>
+    
+    <%= f.submit '変更を更新する' %></span>
+  <% end %>
+  
+  <style>
+    h4 {
+      margin-left: 50px;
+      margin-top: 50px;
+    }
+    
+    span {
+      margin-left: 50px;
+    }
+  </style>
+    
+  </body>
+</hrml>

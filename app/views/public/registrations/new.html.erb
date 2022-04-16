@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>新規会員登録</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -6,8 +6,8 @@
 
 <table>
   <tr>
-    <th>last_name</th>
-    <th>first_name</th>
+    <th>（姓）</th>
+    <th>（名）</th>
   </tr>
   <tr>
     <td>
@@ -23,8 +23,8 @@
   </tr>
 
   <tr>
-    <th>last_name_kana</th>
-    <th>first_name_kana</th>
+    <th>（姓）カナ</th>
+    <th>（名）カナ</th>
   </tr>
   <tr>
     <td><%= f.text_field :last_name_kana %></td>
@@ -32,7 +32,7 @@
   </tr>
   
   <tr>
-    <th>email</th>
+    <th>メールアドレス</th>
   </tr>
   <tr>
     <td><%= f.email_field :email, autocomplete: "email" %></td>
@@ -43,7 +43,7 @@
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br>
     
-    <th>password</th>
+    <th>パスワード</th>
   </tr>
   <tr>
     <td><%= f.password_field :password %></td>
@@ -51,42 +51,40 @@
   
   
   <tr>
-    <th>password_confirmation</th>
+    <th>パスワード確認</th>
   </tr>
   <tr>
     <td><%= f.password_field :password_confirmation %></td>
   </tr>
   
   <tr>
-    <th>postal_code</th>
+    <th>郵便番号</th>
   </tr>
   <tr>
     <td><%= f.number_field :postal_code %></td>
   </tr>
   
   <tr>
-    <th>address</th>
+    <th>住所</th>
   </tr>
   <tr>
     <td><%= f.text_field :address %></td>
   </tr>
   
   <tr>
-    <th>telephone_number</th>
+    <th>電話番号</th>
   </tr>
   <tr>
     <td><%= f.number_field :telephone_number %></td>
   </tr>
+  
 </table>
 
-
-
-
-
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
 
 <%= render "public/shared/error_messages", resource: resource %>
+
 

@@ -4,16 +4,29 @@ class Public::CustomersController < ApplicationController
 def new
 end
 
+  
+def create
+end
+
 def show
-@customer = Customer.find(params[:id])
-@items = @customer.item
-@item = Items.new
+@customer = current_customer
+# @cart_items = @customer.cart_item
+# @cart_items = CartItems.new
 end
 
 def index
-@customer = cuurent_customer
-@items = @customer.items
-@item = Item.new
+@customer = current_customer
+# @items = @customer.items
+# @item = Item.new
+end
+
+def edit
+@customers =Customer.all
+@customer = current_customer
+
+end
+
+def update
 end
 
 private
