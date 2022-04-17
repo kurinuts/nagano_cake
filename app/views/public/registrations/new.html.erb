@@ -30,54 +30,54 @@
     <td><%= f.text_field :last_name_kana %></td>
     <td><%= f.text_field :first_name_kana %></td>
   </tr>
-  
+
   <tr>
     <th>メールアドレス</th>
   </tr>
   <tr>
     <td><%= f.email_field :email, autocomplete: "email" %></td>
   </tr>
-  
+
   <tr>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br>
-    
+
     <th>パスワード</th>
   </tr>
   <tr>
     <td><%= f.password_field :password %></td>
   </tr>
-  
-  
+
+
   <tr>
     <th>パスワード確認</th>
   </tr>
   <tr>
     <td><%= f.password_field :password_confirmation %></td>
   </tr>
-  
+
   <tr>
     <th>郵便番号</th>
   </tr>
   <tr>
     <td><%= f.number_field :postal_code %></td>
   </tr>
-  
+
   <tr>
     <th>住所</th>
   </tr>
   <tr>
     <td><%= f.text_field :address %></td>
   </tr>
-  
+
   <tr>
     <th>電話番号</th>
   </tr>
   <tr>
     <td><%= f.number_field :telephone_number %></td>
   </tr>
-  
+
 </table>
 
   <div class="actions">

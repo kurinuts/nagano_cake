@@ -1,1 +1,38 @@
-会員一覧
+
+<html>
+  <head></head>
+  <body>
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-8">
+          <h4>会員一覧</h4>
+          <table class ="table">
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+      <tr>
+        <% @customers.each do |customer| %>
+        <td><%= customer.id %></td>
+        <td><%= customer.last_name %><%= customer.first_name %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.is_active %></td>
+      </tr>
+      <% end %>
+    </table>
+
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <style>
+    h4 {
+      margin: 50px;
+      }
+    </style>
+
+  </body>
+</html>

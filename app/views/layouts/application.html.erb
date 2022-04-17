@@ -42,8 +42,8 @@
             </li>
             <% end %>
 
-            
-            
+
+
             <% if admin_signed_in? %>
             <li class="nav-item">
               <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-white' %>
@@ -59,19 +59,7 @@
             </li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %></li>
             <% else %>
-            
-            <li class="nav-item">
-              <%= link_to "About", about_path, class: 'nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "商品一覧", items_path, class: 'nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_admin_session_path, class: 'nav-link text-white' %>
-            </li>
+
             <% end %>
             </ul>
           </div>
@@ -90,12 +78,16 @@
     </main>
 
     <footer class="text-white pt-5 pb-4">
-      
+
       <p>Have a delicious day</p>
-      <li><%= link_to "Admin Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-warning btn-sm btn-block" %></li>
+      <% if admin_signed_in? %>
+      <%= link_to "Admin Log Out", destroy_admin_session_path, method: :delete, class: "btn btn-outline-danger btn-sm btn-block" %>
+      <% else %>
+      <%= link_to "Admin Log In", new_admin_session_path, class: "btn btn-outline-warning btn-sm btn-block" %>
+      <% end %>
 
 
-      
+
       <style>
       p {
         text-align: center;

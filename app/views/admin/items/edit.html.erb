@@ -1,12 +1,20 @@
-<html>
-  <head>
-
-  </head>
-
+<hrml>
+  <head></head>
   <body>
-    <div class="new-item">
-  <%= form_with model: @item, url: admin_items_path do |f| %>
-  <table>
+    <h4>商品編集</h4>
+
+    <% if @item.errors.any? %>
+  <%= @item.errors.count %>件のerrorが発生しました
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+    <table>
+      <%= form_with model: @item, url: admin_items_path do |f| %>
    <tr>
      <th>商品画像</th><td><%= f.file_field :image, accept: "image/*" %></td>
    </tr>
@@ -27,22 +35,27 @@
      <td>
        <%= form_with model: @item, local: true do |f| %>
        <%= f.radio_button :checked, :true %>
-       <%= f.label :checked, "販売中" %><br />
+       <%= f.label :checked, "販売中" %>
        <%= f.radio_button :checked, :false %>
-       <%= f.label :checked, "販売中止" %><br />
+       <%= f.label :checked, "販売中止" %>
        <% end %>
      </td>
    </tr>
   </table>
-  <%= f.submit 'create' %>
-  <% end %>
 
-  </div>
+   <%= f.submit '変更を更新する' %>
+    <% end %>
 
   <style>
-  .new-item {
-    margin: 100px;
-  }
+    h4 {
+      margin-left: 50px;
+      margin-top: 50px;
+    }
+
+    span {
+      margin-left: 50px;
+    }
   </style>
+
   </body>
-</html>
+</hrml>
