@@ -1,1 +1,35 @@
-customer/items/index
+<html>
+  <head></head>
+  <body>
+    <h2>商品一覧</h2>
+    <div class="flex">
+      <% @items.each do |item| %>
+      <div class= "flex-contents">
+
+      <span><%= image_tag item.image, size: "150x150" %></span><br>
+      <span><%= link_to item_path(item) do %><%= item.name %>
+      <% end %>
+      </span><br>
+      <span>￥<%= item.price %></span>
+      </div>
+      <% end %>
+    </div>
+
+  </body>
+  <style>
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 auto;
+      justify-content: space-between;
+      align-items: flex-start;
+      width: 1000px;
+      height: 500px;
+      align-content: space-around;
+    }
+
+    .flex > div {
+      flex-basis: 200px;
+    }
+  </style>
+</html>

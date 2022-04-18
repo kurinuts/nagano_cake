@@ -4,17 +4,17 @@
     <%= form_with model: @item do |f| %>
     <div class="container">
       <div class="row">
-        
+
         <div class="col-md-4">
           <h4>商品詳細</h4>
-          
-          <div class="item-image"><%= @item.image %>
+
+          <div class="item-image"><%= image_tag @item.image, size: "400x400" %>
           </div>
         </div>
-          
+
         <div class="col-md-2">
         </div>
-        
+
         <div class="col-md-6">
           <table class ="table">
             <tr>
@@ -27,7 +27,7 @@
               <th>税抜価格</th> <td><%= @item.price %></td>
             </tr>
             <tr>
-              <th>ジャンル</th><td><%= @item.genre.name %></td>    
+              <th>ジャンル</th><td><%= @item.genre.name %></td>
             </tr>
             <tr>
               <th>ステータス</th><td><%= @item.is_active %></td>
@@ -35,12 +35,12 @@
           </table>
           <%= link_to "Edit", edit_admin_item_path(@item), class: "btn btn-success" %>
             <% end %>
-    
+
     </div>
     </div>
     </div>
     </div>
-    
+
     <style>
     h4 {
       margin: 50px;
@@ -48,12 +48,16 @@
       text-align: center;
       color: white;
       }
-      
+
     .table {
       margin-top: 100px;
-    } 
+    }
+    
+    .item-image {
+      margin-bottom: 20px;
+    }
     </style>
-  
+
 
   </body>
 </html>

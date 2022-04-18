@@ -27,6 +27,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
+              
             <% if customer_signed_in? %>
             <li class="nav-item">
               <%= link_to "Home", root_path, class: 'nav-link text-white' %>
@@ -40,9 +41,8 @@
             <li class="nav-item">
               <%= link_to "Log Out", destroy_customer_session_path, method: :delete, class: 'nav-link text-white' %>
             </li>
+            
             <% end %>
-
-
 
             <% if admin_signed_in? %>
             <li class="nav-item">
@@ -59,6 +59,20 @@
             </li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %></li>
             <% else %>
+            <li class="nav-item">
+              <%= link_to "About", about_path, class: 'nav-link text-white' %>
+            </li>
+            <li>
+              <%= link_to "商品一覧", items_path, class: 'nav-link text-white' %>
+            </li>
+            <li>
+              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-white' %>
+            </li>
+            <li>
+              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-white' %>
+            </li>
+            
+            
 
             <% end %>
             </ul>

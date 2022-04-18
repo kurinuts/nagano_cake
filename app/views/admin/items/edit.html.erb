@@ -12,7 +12,21 @@
   </ul>
 <% end %>
 
+    <%= form_with model: @item do |f| %>
+    <div class="container">
+      <div class="row">
 
+        <div class="col-md-4">
+
+          <div class="item-image"><%= image_tag @item.image, size: "400x300" %>
+          <% end %>
+          </div>
+          
+        </div>
+    <div class="col-md-2">
+    </div>
+
+    <div class="col-md-6">
     <table>
       <%= form_with model: @item, url: admin_items_path do |f| %>
    <tr>
@@ -56,6 +70,10 @@
       margin-left: 50px;
     }
   </style>
+  </div>
+  </div>
+  </div>
+  </div>
 
   </body>
 </hrml>
