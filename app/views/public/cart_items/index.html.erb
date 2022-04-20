@@ -23,27 +23,38 @@
     </div>
     <div class="col-md-2">
       </div>
-      
+
        <div class="col-md-5">
-         <h1>Cart Items</h1>
-         <table class="table">
+         <h1>Cart_items</h1>
+           
+           <table class="table">
            <tr>
-             <th>image</th>
-             <th>name</th>
-             <th>introduction</th>
-             <th>edit</th>
+             <th>image name</th>
+             <th>単価</th>
+             <th>数量</th>
+             <th>小計</th>
              <th>delete</th>
-             <td></td>
-             <td></td>
-             <td></td>
-             <td></td>
-             <td></td>
+            </tr>
+            <tr>
+              <% @cart_item.each do |cart_item| %>
+             <td><%= image_tag cart_item.image, size: "100x100" %>
+             <%= cart_item.name %></td>
+             <td><%= cart_item.price %></td>
+             <td><%= cart_item.amount %>変更</td>
+             <td>小計</td>
+             
+             「合計金額」
+              <% end %>
            </tr>
          </table>
+          <%= link_to "買い物を続ける", items_path %>
+         <%= link_to "情報入力に進む", orders_path %>
+         
+         
+         
            </div>
+     </div>
+     </div>
 
-     </div>
-     </div>
-  
   </body>
 </html>

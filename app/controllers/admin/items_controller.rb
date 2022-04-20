@@ -17,7 +17,8 @@ class Admin::ItemsController < ApplicationController
 
   def show
   @items = Item.all
-
+  @customers = Customer.all
+  @customer = Customer.find(params[:id])
   @item = Item.find(params[:id])
   end
 
@@ -33,8 +34,10 @@ class Admin::ItemsController < ApplicationController
 
   def update
   @item = Item.find(params[:id])
-  @genres = Genre.all  
+  @genres = Genre.all
+  @item.update(item_params)
   if @item.save
+  flash[:notice] = "successfully item_update"
   redirect_to admin_item_path(@item)
   else
   @genres = Genre.all
@@ -47,5 +50,9 @@ class Admin::ItemsController < ApplicationController
 
   def item_params
   params.require(:item).permit(:name, :introduction, :price, :is_active, :genre_id, :image)
+  end
+  
+  def customer_params
+  params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_active)
   end
 end

@@ -21,7 +21,7 @@
           <div class="item-image"><%= image_tag @item.image, size: "400x300" %>
           <% end %>
           </div>
-          
+
         </div>
     <div class="col-md-2">
     </div>
@@ -56,10 +56,10 @@
      </td>
    </tr>
   </table>
-
+  <%= form_with model: @item, url: admin_item_path() do |f| %>
    <%= f.submit '変更を更新する' %>
     <% end %>
-
+    <% end %>
   <style>
     h4 {
       margin-left: 50px;

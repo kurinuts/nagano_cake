@@ -25,6 +25,11 @@
 
 <%= render "public/shared/links" %>
 
+<div class="sign-up">
+<h4>会員登録がお済みでない方</h4>
+<p><%= link_to "こちら", new_customer_registration_path %>から新規登録を行ってください。</p>
+</div>
+
 <style>
 
   .field {
@@ -36,4 +41,9 @@
   h2 {
     margin: 50px;
   }
+  
+  .sign-up {
+    text-align: center;
+  }
+  
 </style>
