@@ -18,6 +18,7 @@ class Admin::ItemsController < ApplicationController
   def show
   @items = Item.all
   @customers = Customer.all
+  @cart_item = CartItem.new
   @customer = Customer.find(params[:id])
   @item = Item.find(params[:id])
   end

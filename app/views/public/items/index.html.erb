@@ -1,7 +1,6 @@
 <html>
   <head></head>
   <body>
-    <h2>商品一覧</h2>
     <div class="flex">
       <% @items.each do |item| %>
       <div class= "flex-contents">
@@ -13,6 +12,7 @@
       <span>￥<%= item.price %></span>
       </div>
       <% end %>
+      <%= paginate @items %>
     </div>
 
   </body>

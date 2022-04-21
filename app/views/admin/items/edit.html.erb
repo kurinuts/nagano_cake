@@ -1,7 +1,7 @@
 <hrml>
   <head></head>
   <body>
-    <h4>商品編集</h4>
+
 
     <% if @item.errors.any? %>
   <%= @item.errors.count %>件のerrorが発生しました
@@ -12,14 +12,13 @@
   </ul>
 <% end %>
 
-    <%= form_with model: @item do |f| %>
     <div class="container">
       <div class="row">
 
         <div class="col-md-4">
 
+
           <div class="item-image"><%= image_tag @item.image, size: "400x300" %>
-          <% end %>
           </div>
 
         </div>
@@ -27,8 +26,8 @@
     </div>
 
     <div class="col-md-6">
+      <%= form_with model: @item, url: admin_item_path do |f| %>
     <table>
-      <%= form_with model: @item, url: admin_items_path do |f| %>
    <tr>
      <th>商品画像</th><td><%= f.file_field :image, accept: "image/*" %></td>
    </tr>
@@ -47,19 +46,20 @@
    <tr>
      <th>販売ステータス</th>
      <td>
-       <%= form_with model: @item, local: true do |f| %>
+
        <%= f.radio_button :checked, :true %>
        <%= f.label :checked, "販売中" %>
        <%= f.radio_button :checked, :false %>
        <%= f.label :checked, "販売中止" %>
-       <% end %>
+
      </td>
    </tr>
   </table>
-  <%= form_with model: @item, url: admin_item_path() do |f| %>
+
    <%= f.submit '変更を更新する' %>
     <% end %>
-    <% end %>
+
+
   <style>
     h4 {
       margin-left: 50px;
@@ -69,6 +69,7 @@
     span {
       margin-left: 50px;
     }
+    
   </style>
   </div>
   </div>

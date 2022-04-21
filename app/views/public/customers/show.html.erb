@@ -8,10 +8,17 @@
   <body>
     <div class="container">  <!-- この行を追加 -->
     <div class="row">
-      <div class="col-md-5">
-        <h1>Customer info</h1>
-        <table class="table table-striped">
-          <tr><th>お名前</th><td><%= @customer.last_name %><%= @customer.first_name %>　様</td></tr>
+      <div class="col-md-7">
+        <h1>ようこそ！</h1>
+
+        <h4>登録情報</h4>
+
+        <table class="table">
+          <tr><th>氏名</th><td><%= @customer.last_name %><%= @customer.first_name %>　様</td></tr>
+          <tr><th>カナ</th><td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td></tr>
+          <tr><th>郵便番号</th><td><%= @customer.postal_code %></td></tr>
+          <tr><th>住所</th><td><%= @customer.address %></td></tr>
+          <tr><th>電話番号</th><td><%= @customer.telephone_number %></td></tr>
           <tr><th>メールアドレス</th><td><%= @customer.email %></td></tr>
           </table>
         <%= link_to edit_customer_path(@customer), class: "btn btn-secondary btn-block" do %>
@@ -20,30 +27,27 @@
 
 <!--link_toはデフォルトがGET なのでメソッドの指定はしないのが正解。deleteはメソッド指定が必要な場合もある-->
 
-    </div>
-    <div class="col-md-2">
       </div>
-      
-       <div class="col-md-5">
-         <h1>Cart Items</h1>
-         <table class="table">
-           <tr>
-             <th>image</th>
-             <th>name</th>
-             <th>introduction</th>
-             <th>edit</th>
-             <th>delete</th>
-             <td></td>
-             <td></td>
-             <td></td>
-             <td></td>
-             <td></td>
-           </tr>
-         </table>
-           </div>
+   
+      <div class="col-md-1">
+        
+      </div>
+    
+    <div class="row">
+      <div class="col-md-12">
+        <h5><strong>配送先</strong><br><%= link_to "一覧を見る", addresses_path, class: "btn btn-success btn-block" %></h5>
+        <h5><strong>注文履歴</strong><br><%= link_to "一覧を見る", orders_path, class: "btn btn-success btn-block" %></h5>
+      </div>
+   
+    </div>
+   </div>
+    <style>
 
-     </div>
-     </div>
-  
+    .h5 {
+      margin-top: 30px;
+    }
+
+    </style>
+
   </body>
 </html>

@@ -1,0 +1,64 @@
+
+ <div class="container">  <!-- この行を追加 -->
+    <div class="row">
+      <h4>注文情報入力画面</h4>
+      <div class="col-md-8">
+<%= form_with model: @order, url: orders_path, method: :post do |f| %>
+
+<table>
+  <tr>
+    <th>支払方法</th>
+    <td>
+      <%= form_with model: @cart_item, local: true do |f| %>
+       <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+       <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+       <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+       <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+
+    </td>
+  </tr>
+
+  <tr>
+    <th>ご自身の住所</th>
+    <td><%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %></td>
+  </tr>
+
+  <tr>
+    <th>登録住所から選択</th></th>
+    <td></td>
+  </tr>
+
+  <tr>
+    <th>新しいお届け先</th></th>
+    <td></td>
+  </tr>
+
+  <tr>
+    <th>郵便番号（ハイフンなし）</th>
+
+    <td><%= f.password_field :sent_code %></td>
+  </tr>
+
+
+  <tr>
+    <th>住所</th>
+
+    <td><%= f.password_field :address %></td>
+  </tr>
+
+  <tr>
+    <th>宛名</th>
+
+    <td><%= f.number_field :sent_name %></td>
+  </tr>
+</table>
+<% end %>
+
+  <div class="actions">
+    <%= f.submit "確認画面へ進む" %>
+  </div>
+
+  </div>
+  </div>
+  </div>
+<% end %>

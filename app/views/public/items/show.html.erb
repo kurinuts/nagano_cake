@@ -12,7 +12,7 @@
       <div class="col-md-4">
         <h1>Customer info</h1>
         <table class="table table-striped">
-          <tr><th>お名前</th><td><%= @customer.last_name %><%= @customer.first_name %>　様</td></tr>
+          <tr><th>お名前</th><td><%= @customer.last_name %><%= @customer.first_name %> 様</td></tr>
           <tr><th>メールアドレス</th><td><%= @customer.email %></td></tr>
           </table>
         <%= link_to edit_customer_path(@customer), class: "btn btn-secondary btn-block" do %>
@@ -25,19 +25,17 @@
 
     <div class="col-md-7 offset-md-1">
       <h1>Items</h1>
+      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
       <table class="table">
         <thead>
           <th> </th>
           <th>Name</th>
           <th>Introduction</th>
-    <!--<th colspan="2"></th>-->
         </thead>
-
-        <%= form_with model: @item do |f| %>
         <tr>
           <td>
             <%= link_to customer_path(@customer) do %>
-            <%= image_tag @item.image, size: "150x150" %>
+            <%= image_tag @item.image, size: "150x100" %>
             <% end %></td>
           <td>
             <%= link_to item_path(@item) do %>
@@ -51,9 +49,9 @@
         <div class ="order-price">
           ￥<%= @item.price %>
           <div class ="order-serection">
-            <%= f.hidden_field :amount, :value => "個数選択" %>
+            <%= f.hidden_field :item_id, :value => @item.id %>
             <%= f.select :amount, [['１',1], ['２',2], ['３',3], ['４',4], ['５',5], ['６',6], ['７',7], ['８',8], ['９',9]] %><br>
-            <%= link_to "カートに入れる", cart_items_path, class: "btn btn-success" %>
+            <%= f.submit "カートに入れる" %>
             <% end %>
         </div>
       </div>
