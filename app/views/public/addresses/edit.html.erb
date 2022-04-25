@@ -4,7 +4,7 @@
     <div class="container">
      <div class="row">
       <div class="col-md-5">
-      <%= form_with model: @address, url: addresses_path do |f| %>
+      <%= form_with model: @address, url: address_path do |f| %>
       <table class="table">
        <tr><th>郵便番号</th><td><%= f.number_field :postal_code %></td></tr>
        <tr><th>住所</th><td><%= f.text_area :address %></td></tr>

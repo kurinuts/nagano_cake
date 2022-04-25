@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :items
+    post 'orders/confirm' => 'orders#confirm'
+    get 'orders/complete' => 'orders#complete'
     # resources :homes
     # resources :registrations
     # resources :sessions
@@ -50,5 +52,4 @@ Rails.application.routes.draw do
   get 'public/homes/about' => 'public/homes#about', as: "about"
   # post 'sessions/admin' => 'admin/sessions'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
 end

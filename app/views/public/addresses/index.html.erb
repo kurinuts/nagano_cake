@@ -14,7 +14,7 @@
   </tr>
   <tr>
     <th>宛名</th>
-    <td><%= f.number_field :name %></td>
+    <td><%= f.text_field :name %></td>
   </tr>
   </table>
    <%= f.submit '新規登録', class: "btn btn-success" %>
@@ -30,6 +30,7 @@
       <th>郵便番号</th>
       <th>住所</th>
       <th>宛名</th>
+      <th>　</th>
       <th></th>
     </tr>
     <% @addresses.each do |address| %>
@@ -37,8 +38,9 @@
       <td><%= address.postal_code %></td>
       <td><%= address.address %></td>
       <td><%= address.name %></td>
+      <td>様</td>
       <td><%= link_to "編集する", edit_address_path(address), class: "btn btn-success" %>
-      <%= link_to "削除する", addresses_path(address), method: :delete, class: "btn btn-danger" %></td>
+      <%= link_to "削除する", address_path(address), method: :delete, class: "btn btn-danger" %></td>
     </tr>
     <% end %>
   </table>

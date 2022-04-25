@@ -27,7 +27,7 @@ class Admin::ItemsController < ApplicationController
   @items = Item.all
   @genres = Genre.all
   end
-  
+
   def edit
   @item = Item.find(params[:id])
   @genres = Genre.all
@@ -52,7 +52,7 @@ class Admin::ItemsController < ApplicationController
   def item_params
   params.require(:item).permit(:name, :introduction, :price, :is_active, :genre_id, :image)
   end
-  
+
   def customer_params
   params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_active)
   end

@@ -28,22 +28,6 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               
-            <% if customer_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "Home", root_path, class: 'nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'My Page', customer_path(current_customer.id), class: 'nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Shop", items_path, class: 'nav-link text-white' %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-white' %>
-            </li>
-            
-            <% end %>
-
             <% if admin_signed_in? %>
             <li class="nav-item">
               <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-white' %>
@@ -59,6 +43,21 @@
             </li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %>
             </li>
+              
+            <% elsif customer_signed_in? %>
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'My Page', customer_path(current_customer.id), class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Shop", items_path, class: 'nav-link text-white' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-white' %>
+            </li>
+            
             <% else %>
             <li class="nav-item">
               <%= link_to "About", about_path, class: 'nav-link text-white' %>
@@ -71,9 +70,12 @@
             </li>
             <li>
               <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-white' %>
-            </li
+            </li>
             <% end %>
-            </ul>
+            
+            
+            
+            
           </div>
         </div>
       </nav>
@@ -82,14 +84,8 @@
     <style>
       header {
         background-color: tan;
-        margin-bottom: 70px;
+        margin-bottom: 50px;
       }
-      
-      footer {
-        margin-top: 50px;
-      }
-      
-      
     </style>
 
     <main class="mb-auto">
@@ -114,6 +110,8 @@
 
       footer {
         background-color: tan;
+        margin-top: 20px;
+        
       }
 
 

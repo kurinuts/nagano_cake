@@ -20,7 +20,7 @@ class Public::CartItemsController < ApplicationController
 		 flash[:notice] = "New Item was successfully added to cart."
 		 redirect_to cart_items_path
 	else
-     render index
+     render :index
   end
   end
 
@@ -30,6 +30,7 @@ class Public::CartItemsController < ApplicationController
   def index
   @customer = current_customer
   @cart_items = current_customer.cart_items
+  # @total_price = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
 
   # @item = Item.find(params[:item_id])
   end
@@ -45,6 +46,19 @@ class Public::CartItemsController < ApplicationController
   render :index
   end
   end
+  
+  # def destroy.all
+  # @customer = current_customer
+  # @cart_items = current_customer.cart_items
+  # @cart_item = CartItem.find(params[:id])
+  # if @CartItem.destroy_all
+  # flash[:notice] = "successfully cart_item_delete"
+  # redirect_to cart_items_path
+  # else
+  # render :index
+  # end
+  # end
+  
 
   private
   def cart_item_params

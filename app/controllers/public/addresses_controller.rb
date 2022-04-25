@@ -16,7 +16,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def index
-  @addresses = Address.all
+  @addresses = current_customer.addresses
   @address = Address.new
   end
 
@@ -26,11 +26,25 @@ class Public::AddressesController < ApplicationController
   end
 
   def update
-  @address = Address.find(params[])
+  @address = Address.find(params[:id])
+  @address.update(address_params)
+  if @address.save
+    flash[:notice] = "successfully address_update"
+    redirect_to addresses_path
+  else
+    render :index
+  end
   end
 
   def destroy
-
+   @address = Address.find(params[:id])
+   @addresses = current_customer.addresses
+   if @address.destroy
+     flash[:notice] = "successfully address_destroy"
+     redirect_to addresses_path
+   else
+     render :index
+   end
   end
 
   private
