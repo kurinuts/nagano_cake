@@ -1,4 +1,5 @@
 class Public::CartItemsController < ApplicationController
+  # before_action :correct_customer, only: :destroy_all
 
   def new
   @cart_item = @cart_item.new
@@ -46,19 +47,25 @@ class Public::CartItemsController < ApplicationController
   render :index
   end
   end
-  
-  # def destroy.all
-  # @customer = current_customer
-  # @cart_items = current_customer.cart_items
-  # @cart_item = CartItem.find(params[:id])
-  # if @CartItem.destroy_all
-  # flash[:notice] = "successfully cart_item_delete"
-  # redirect_to cart_items_path
-  # else
-  # render :index
-  # end
-  # end
-  
+
+
+  def destroy_all
+  @cart_items = CartItem.all
+  @cart_items.destroy_all
+  flash[:danger] = "全て削除しました!"
+  #↓ここは自由でいいです
+  redirect_to cart_items_path
+  # # @customer = current_customer
+  # # @cart_items = current_customer.cart_items
+  # # @cart_item = CartItem.find(params[:id])
+  # # if @CartItem.destroy_all
+  # # flash[:notice] = "successfully cart_item_delete"
+  # # redirect_to cart_items_path
+  # # else
+  # # render :index
+  # # end
+  end
+
 
   private
   def cart_item_params
@@ -69,9 +76,4 @@ class Public::CartItemsController < ApplicationController
     params.require(:item).permit(:name, :introduction, :price, :is_active, :image)
   end
 
-  def coorect_customer
-    @item = Item.find(params[:id])
-    @customer = @item.customer
-    redirect_to(items_path) unless @customer == current_customer
-  end
 end

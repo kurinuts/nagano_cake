@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     # passwords: 'admin/passwords',
     # registrations: 'admin/registrations'
   }
-
+  
   namespace :admin do
     resources :items
     # resources :sessions
@@ -24,10 +24,12 @@ Rails.application.routes.draw do
     resources :items
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
+    
     # resources :homes
     # resources :registrations
     # resources :sessions
     resources :customers
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     resources :cart_items
     resources :orders
     resources :addresses

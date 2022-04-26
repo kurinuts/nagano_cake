@@ -8,18 +8,22 @@ class Public::OrdersController < ApplicationController
   def create
   @order = Order.new(order_params)
   if @order.save
-  redirect_to order_path(order)
+  redirect_to orders_path
   else
   render :new
   end
   end
 
   def index
+  @orders = current_customer.orders
   @customer = current_customer
+  @total = 0
   end
 
-  def edit
+  def show
+  @orders = current_customer.orders
   end
+  
 
   # def show
   # @customer = current_customer
@@ -28,7 +32,11 @@ class Public::OrdersController < ApplicationController
 
   def confirm
   @cart_items = current_customer.cart_items
-  @order = Order.new
+  @order = Order.new(order_params)
+  @total = 0
+  # @total = @cart_items.inject(0) { |sum, item| sum + item.subtotal }
+  # @l_total = @cart_items.inject(0) { |sum, item| sum + item.subtotal + 800 }
+  @order.postage = 800
   if params[:order][:register_address] == '0'
   @order.sent_adress = current_customer.address
   @order.sent_code = current_customer.postal_code
@@ -36,7 +44,7 @@ class Public::OrdersController < ApplicationController
   flash[:notice] = "successfully"
   elsif params[:order][:register_address] == '1'
   @address = Address.find(params[:order][:address_id])
-  @order.sent_adress = @address.address
+  @order.sent_address = @address.address
   @order.sent_code = @address.postal_code
   @order.sent_name = @address.name
   flash[:notice] = "successfully"
@@ -48,6 +56,7 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:sent_code, :sent_adress, :sent_name, :postage, :payment, :payment_method, :orders_status)
+    params.require(:order).permit(:sent_code, :sent_address, :sent_name, :postage, :payment, :payment_method, :orders_status)
   end
+   
 end

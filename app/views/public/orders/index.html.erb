@@ -1,10 +1,8 @@
-注文履歴一覧画面
 <html>
 
   <head>
       <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
-
 
   <body>
     <div class="container">  <!-- この行を追加 -->
@@ -22,26 +20,31 @@
 <!--link_toはデフォルトがGET なのでメソッドの指定はしないのが正解。deleteはメソッド指定が必要な場合もある-->
 
     </div>
-    <div class="col-md-2">
-      </div>
       
-       <div class="col-md-5">
+       <div class="col-md-6">
          <h1>Order index</h1>
+         
          <table class="table">
            <tr>
-             <th>image</th>
-             <th>name</th>
-             <th>introduction</th>
-             <th>edit</th>
-             <th>delete</th>
-             <td></td>
-             <td></td>
-             <td></td>
-             <td></td>
-             <td></td>
+             <th>注文日</th>
+             <th>配送先</th>
+             <th>注文商品</th>
+             <th>支払金額</th>
+             <th>ステータス</th>
+             <th>注文詳細</th>
+             <% @orders.each do |order| %>
+             <td> </td>
+             <td><%= order.sent_code %><br>
+             <%= order.sent_address %><br>
+             <%= order.sent_name %>様</td>
+             <td><%= order.item.name %></td>
+             <td><<%= @total + @order.postage %>円</td>
+             <td><%= order.orders_status %></td>
+             <td><%= link_to "注文詳細へ", order_path(order), class: "btn btn-success" %></td>
            </tr>
+           <% end %>
          </table>
-         注文承認画面へ（リンクボタン）
+         
            </div>
 
      </div>
