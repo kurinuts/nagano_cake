@@ -7,11 +7,20 @@ class Public::OrdersController < ApplicationController
 
   def create
   @order = Order.new(order_params)
-  if @order.save
-  redirect_to orders_path
-  else
-  render :new
+  @order.customer_id = current_customer.id
+  @order.save
+
+  # @cart_items = current_customer.cart_items
+  current_customer.cart_items.each do |cart_item|
+   @order_detail = OrderDetail.new
+   @order_detail.item_id = cart_item.item_id
+   @order_detail.order_id = @order.id
+   @order_detail.price = cart_item.item.price
+   @order_detail.amount = cart_item.amount
+   @order_detail.save
   end
+  current_customer.cart_items.destroy_all
+  redirect_to orders_complete_path
   end
 
   def index
@@ -22,8 +31,10 @@ class Public::OrdersController < ApplicationController
 
   def show
   @orders = current_customer.orders
+  @order = Order.find(params[:id])
+  # @item = current_customer.orders.item
   end
-  
+
 
   # def show
   # @customer = current_customer
@@ -38,7 +49,7 @@ class Public::OrdersController < ApplicationController
   # @l_total = @cart_items.inject(0) { |sum, item| sum + item.subtotal + 800 }
   @order.postage = 800
   if params[:order][:register_address] == '0'
-  @order.sent_adress = current_customer.address
+  @order.sent_address = current_customer.address
   @order.sent_code = current_customer.postal_code
   @order.sent_name = current_customer.name
   flash[:notice] = "successfully"
@@ -56,7 +67,15 @@ class Public::OrdersController < ApplicationController
 
   private
   def order_params
-    params.require(:order).permit(:sent_code, :sent_address, :sent_name, :postage, :payment, :payment_method, :orders_status)
+    params.require(:order).permit(:customer_id, :sent_code, :sent_address, :sent_name, :postage, :payment, :payment_method, :orders_status)
   end
-   
+
+  def cart_item_params
+    params.require(:cart_item).permit(:item_id, :amount)
+  end
+
+  def item_params
+    params.require(:item).permit(:name, :introduction, :price, :is_active, :image)
+  end
+
 end

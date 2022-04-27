@@ -1,6 +1,6 @@
 
 <h2>注文情報確認</h2>
-<%= form_with model: @order do |f| %>
+<%= form_with model: @order, url: orders_path do |f| %>
 <div class="container">
   <div class="row">
     <div class="col-md-9">
@@ -34,13 +34,15 @@
     <th>商品合計</th>
     <% @cart_items.each do |cart_item| %>
     <% @total +=  cart_item.subtotal %>
-    
+
     <% end %>
     <td><%= @total %>円</td>
   </tr>
   <tr>
     <th>請求金額</th>
     <td><%= @total + @order.postage %>円</td>
+    <%= f.hidden_field :payment, :value => @order.payment %>
+    <%= f.hidden_field :customer_id, :value => current_customer.id %>
     <!--<td><= @l_total +=  (cart_item.item.price * 1.1).floor * cart_item.amount + 800 ></td>-->
   </tr>
 
@@ -58,13 +60,27 @@
 </div>
 <div class="col-md-5">
   <table>
-    <tr><th><h4>支払方法</h4></th><td></td><td><%= @order.payment_method %></td></tr>
+    <tr><th><h4>支払方法</h4></th><td></td><td>
+    <% if @order.credit_card? %>
+    <p>クレジットカード</p>
+    <% else %>
+    <p>銀行振込</p>
+    <% end %>
+</td></tr>
     <tr><th><h4>お届け先</h4></th><td></td><td>〒<%= @order.sent_code %> <%= @order.sent_address %><br>
     <%= @order.sent_name %></td></tr>
+    <!--！！「表示」と「送信」は異なる！ここは表示させているだけ-->
+
   </table>
+  <%= f.hidden_field :payment_method, :value => @order.payment_method %>
+  <%= f.hidden_field :sent_code, :value => @order.sent_code %>
+  <%= f.hidden_field :sent_address, :value => @order.sent_address %>
+  <%= f.hidden_field :sent_name, :value => @order.sent_name %>
+  <!--「送信」する内容を見せたくない場合はhidden fieldを使用-->
+  <!--⇒受け取るにはcontroller内でstrongパラメータを定義（カラム全部定義しなきゃいけない）-->
   <%= f.submit "注文を確定する" %>
   <% end %>
-    
+
 </div>
 </div>
 

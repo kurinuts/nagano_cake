@@ -32,13 +32,15 @@
              <th>支払金額</th>
              <th>ステータス</th>
              <th>注文詳細</th>
+            </tr>
              <% @orders.each do |order| %>
+            <tr>
              <td> </td>
-             <td><%= order.sent_code %><br>
+             <td>〒<%= order.sent_code %><br>
              <%= order.sent_address %><br>
              <%= order.sent_name %>様</td>
              <td><%= order.item.name %></td>
-             <td><<%= @total + @order.postage %>円</td>
+             <td><%= @total + order.postage %>円</td>
              <td><%= order.orders_status %></td>
              <td><%= link_to "注文詳細へ", order_path(order), class: "btn btn-success" %></td>
            </tr>
