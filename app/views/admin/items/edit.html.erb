@@ -41,23 +41,24 @@
    <tr><th>ジャンル</th><td><%= f.collection_select(:genre_id, @genres, :id, :name, prompt: "選択してください") %></td>
    </tr>
    <tr>
-     <th>税抜価格</th><td><%= f.text_area :price %></td>
+     <th>税抜価格</th><td><%= f.number_field :price %>円</td>
    </tr>
    <tr>
      <th>販売ステータス</th>
      <td>
 
-       <%= f.radio_button :checked, :true %>
-       <%= f.label :checked, "販売中" %>
-       <%= f.radio_button :checked, :false %>
-       <%= f.label :checked, "販売中止" %>
+       <%= f.radio_button :is_active, :true %>
+       <%= f.label :is_active, "販売中" %>
+       <%= f.radio_button :is_active, :false %>
+       <%= f.label :is_active, "販売中止" %>
+       <!--<= f.hidden_field :is_active, :value => @item.is_active >-->
 
      </td>
    </tr>
   </table>
 
    <%= f.submit '変更を更新する' %>
-    <% end %>
+   <% end %>
 
 
   <style>
@@ -69,7 +70,7 @@
     span {
       margin-left: 50px;
     }
-    
+
   </style>
   </div>
   </div>

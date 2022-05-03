@@ -1,40 +1,40 @@
-<html>
-  <head></head>
-  <body>
-    <h1>welcome to Nagano Cake Page</h1>
-    <h4>ようこそ、ながのCAKEへ<br>
-    このサイトは、ケーキ販売のECサイトになります。<br>
-    会員でない方も商品の閲覧はできますが、<br>
-    購入には会員登録が必要になります</h4>
+
+<h1 class ="homes-top-head">welcome to Nagano Cake Page</h1>
+<h4 class ="homes-top-body">
+  ようこそ、ながのCAKEへ<br>
+  このサイトは、ケーキ販売のECサイトになります。<br>
+  会員でない方も商品の閲覧はできますが、<br>
+  購入には会員登録が必要になります。
+</h4>
 
 
-    <div class="container">
-      <div class="row">
-         <div class="col-md-8">
-           <div class ="new-items">
-             <h4><strong>新着商品</strong></h4>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+        <h4><strong>新着商品</strong></h4>
+          <p><%= link_to "全ての商品を見る", items_path %></p>
+      </div>
 
-
-         </div>
-
-             <div class="row">
-               <div class="col-md-4">
-             <p><%= link_to "全ての商品を見る", items_path %></p>
-           </div>
-         </div>
+        <div class="col-md-9">
+          <% @items.each do |item| %>
+            <div class= "flex-contents">
+              <span><%= image_tag item.image, size: "150x130" %></span><br>
+              <span>
+                <%= link_to item_path(item) do %>
+                <%= item.name %>
+                <% end %>
+              </span><br>
+              <span>￥<%= item.price %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-
-    <style>
-      h1 {
-        text-align: center;
-        height: 50%;
-      }
-
-      h4 {
-        text-align: center;
-        height: 50%;
-
-      }
-    </style>
-  </body>
-</html>
+  </div>
+</div>
+<style>
+  .flex-contents {
+    display: flex;
+    flex-direction: row;
+  }
+</style>

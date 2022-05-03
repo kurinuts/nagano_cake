@@ -3,13 +3,13 @@
 <%= form_with model: @order, url: orders_path do |f| %>
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-8">
 
 <table>
   <tr>
     <th></th>
     <th>商品名</th>
-    <th>単価（税込</th>
+    <th>単価（税抜）</th>
     <th>数量</th>
     <th>小計</th>
   </tr>
@@ -24,7 +24,7 @@
   <% end %>
 </table>
 </div>
-<div class="col-md-3">
+<div class="col-md-4">
 <table>
   <tr>
     <th>送料</th>
@@ -41,7 +41,7 @@
   <tr>
     <th>請求金額</th>
     <td><%= @total + @order.postage %>円</td>
-    <%= f.hidden_field :payment, :value => @order.payment %>
+    <%= f.hidden_field :payment, :value => @total %>
     <%= f.hidden_field :customer_id, :value => current_customer.id %>
     <!--<td><= @l_total +=  (cart_item.item.price * 1.1).floor * cart_item.amount + 800 ></td>-->
   </tr>

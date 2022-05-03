@@ -1,0 +1,31 @@
+<div class="container">  <!-- この行を追加 -->
+  <div class="row">
+    <div class="col-md-10">
+      <% @orders.each do |order| %>
+      <h4><%= order.customer.last_name %>
+          <%= order.customer.first_name %>様の注文履歴
+          <% end%>
+      </h4>
+
+      <table class="table">
+        <tr>
+          <th>購入日時</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+        </tr>
+        <tr>
+          <% @orders.each do |order| %>
+          <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
+          <% order.order_details.each do |order_detail| %>
+          <td><%= order_detail.amount %></td>
+          <td><%= order.orders_status %></td>
+          <% end %>
+          <% end %>
+        </tr>
+      </table>
+
+  <style>
+    .table {
+      width: 100%;
+    }
+  </style>

@@ -8,7 +8,11 @@ class Public::OrdersController < ApplicationController
   def create
   @order = Order.new(order_params)
   @order.customer_id = current_customer.id
+  @order.postage = 800
+  @order.orders_status = 0
+  # ↑enumで
   @order.save
+  # 初期値（固定値）があればコントローラに定義すればいい（save前に）hiddenで送らなくてもよし
 
   # @cart_items = current_customer.cart_items
   current_customer.cart_items.each do |cart_item|
@@ -24,7 +28,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-  @orders = current_customer.orders
+  @orders = current_customer.orders.page(params[:page]).per(3)
   @customer = current_customer
   @total = 0
   end
@@ -32,6 +36,7 @@ class Public::OrdersController < ApplicationController
   def show
   @orders = current_customer.orders
   @order = Order.find(params[:id])
+
   # @item = current_customer.orders.item
   end
 
@@ -60,7 +65,7 @@ class Public::OrdersController < ApplicationController
   @order.sent_name = @address.name
   flash[:notice] = "successfully"
   elsif params[:order][:register_address] == '2'
-  @order = Order.new(order_params)
+  # @order = Order.new(order_params)
   flash[:notice] = "successfully"
   end
   end

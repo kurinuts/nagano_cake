@@ -1,2 +1,17 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.homes-top-head {
+  width: 100%;
+  text-align: center;
+}
+.homes-top-body {
+  width: 100%;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

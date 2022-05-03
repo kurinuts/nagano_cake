@@ -41,6 +41,21 @@ before_action :customer_state, only: [:create]
   ## 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
   if @customer.valid_password?(params[:customer][:password])
     ## 【処理内容3】
+  if true && !false == true
+  elsif true && !true == false
   end
   end
-end
+  end
+  
+  def reject_customer
+    @customer = Customer.find_by(name: params[:customer][:first_name])
+    if @customer
+    if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
+      flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+      redirect_to new_customer_registration
+    else
+      flash[:notice] = "項目を入力してください"
+    end
+    end
+  end
+  end

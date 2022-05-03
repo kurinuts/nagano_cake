@@ -1,4 +1,5 @@
 class Admin::ItemsController < ApplicationController
+  protect_from_forgery
 
   def new
   @item = Item.new
@@ -19,12 +20,11 @@ class Admin::ItemsController < ApplicationController
   @items = Item.all
   @customers = Customer.all
   @cart_item = CartItem.new
-  @customer = Customer.find(params[:id])
   @item = Item.find(params[:id])
   end
 
   def index
-  @items = Item.all
+  @items = Item.all.page(params[:page]).per(7)
   @genres = Genre.all
   end
 
@@ -39,10 +39,10 @@ class Admin::ItemsController < ApplicationController
   @item.update(item_params)
   if @item.save
   flash[:notice] = "successfully item_update"
-  redirect_to admin_item_path(@item)
+  redirect_to admin_items_path
   else
-  @genres = Genre.all
-  render :new
+  # @genres = Genre.all
+  render :edit
   end
   end
 
