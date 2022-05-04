@@ -36,6 +36,16 @@ class Public::CartItemsController < ApplicationController
   # @item = Item.find(params[:item_id])
   end
 
+  def update
+  @cart_item = CartItem.find_by(item_id: cart_item_params[:item_id])
+  if @cart_item.update(amount: cart_item_params[:amount])
+  flash[:notice] = "successfully cart_item_update"
+  redirect_to cart_items_path
+  else
+  render :index
+  end
+  end
+
   def destroy
   @customer = current_customer
   @cart_item = CartItem.find(params[:id])

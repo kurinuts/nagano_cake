@@ -13,23 +13,23 @@
     <% else %>
     <p>銀行振込</p>
     <% end %></td></tr>
-    <tr><th>ステータス</th><td><%= @order.orders_status %></td></tr>
+    <tr><th>ステータス</th><td><%= Order.orders_statuses_i18n[@order.orders_status] %></td></tr>
 </table>
 
 <table class="bottom" border="1" cellpadding="10">
     <h4>注文内容</h4>
     <tr>
     <th>商品</th>
-    <th>単価（税抜）</th>
+    <th>単価（税込）</th>
     <th>個数</th>
-    <th>小計（税抜）</th>
+    <th>小計（税込）</th>
     </tr>
     <% @order.order_details.each do |order_detail| %>
     <tr>
     <td><%= order_detail.item.name %></td>
-    <td><%= order_detail.item.price %> 円</td>
+    <td><%= (order_detail.item.price * 1.1).floor %> 円</td>
     <td><%= order_detail.amount %></td>
-    <td><%= order_detail.amount * order_detail.item.price %> 円</td>
+    <td><%= ((order_detail.amount * order_detail.item.price) * 1.1).floor %> 円</td>
     </tr>
     <% end %>
 </table>

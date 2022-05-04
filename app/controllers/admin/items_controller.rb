@@ -27,6 +27,7 @@ class Admin::ItemsController < ApplicationController
   @items = Item.all.page(params[:page]).per(7)
   @genres = Genre.all
   end
+  
 
   def edit
   @item = Item.find(params[:id])

@@ -11,13 +11,14 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-        <h4><strong>新着商品</strong></h4>
-          <p><%= link_to "全ての商品を見る", items_path %></p>
+      <p><%= link_to "全ての商品を見る", items_path %></p>
       </div>
 
         <div class="col-md-9">
+          <h4><strong>新着商品</strong></h4>
           <% @items.each do |item| %>
-            <div class= "flex-contents">
+            <div class= "flex">
+              <div class="flex-contents">
               <span><%= image_tag item.image, size: "150x130" %></span><br>
               <span>
                 <%= link_to item_path(item) do %>
@@ -26,6 +27,7 @@
               </span><br>
               <span>￥<%= item.price %></span>
             </div>
+            </div>
           <% end %>
         </div>
       </div>
@@ -33,7 +35,7 @@
   </div>
 </div>
 <style>
-  .flex-contents {
+  .flex {
     display: flex;
     flex-direction: row;
   }

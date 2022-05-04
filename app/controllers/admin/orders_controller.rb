@@ -5,8 +5,18 @@ def index
 end
 
 def show
-@customer = Customer.find(params[:id])
-@orders = @customer.orders
+@order = Order.find(params[:id])
+@customer = @order.customer
 end
 
+
+
+private
+def customer_params
+  params.require(:customer).permit(:email, :last_name, :first_name, :last_name_kana, :first_name_kana, :address, :postal_code, :telephone_number, :is_deleted)
+end
+
+def order_params
+    params.require(:order).permit(:customer_id, :sent_code, :sent_address, :sent_name, :postage, :payment, :payment_method, :orders_status)
+end
 end

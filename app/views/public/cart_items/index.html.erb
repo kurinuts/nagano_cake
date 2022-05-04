@@ -20,27 +20,31 @@
 <!--link_toはデフォルトがGET なのでメソッドの指定はしないのが正解。deleteはメソッド指定が必要な場合もある-->
 
     </div>
-    <div class="col-md-1">
-      </div>
-
-       <div class="col-md-7">
+    
+       <div class="col-md-8">
          <h1>Cart_items</h1><%= button_to "カートを空にする", cart_items_destroy_all_path, method: :delete %>
 
            <table class="table">
            <tr>
-             <th>image name</th>
-             <th>単価</th>
+             <th></th>
+             <th></th>
+             <th>単価(税込)</th>
              <th>数量</th>
              <th>小計</th>
              <th>delete</th>
             </tr>
             <tr>
-              <% @cart_items.each do |cart_item| %>
-              <td><%= image_tag cart_item.item.image, size: "60x50" %>
-             <%= cart_item.item.name %></td>
-             <td><%= cart_item.item.with_tax_price%></td>
-             <td><%= cart_item.amount %><br>
-             変更</td>
+             <% @cart_items.each do |cart_item| %>
+             <td><%= image_tag cart_item.item.image, size: "60x50" %></td>
+             <td><%= cart_item.item.name %></td>
+             <td><%= cart_item.item.with_tax_price %></td>
+             <td>
+             <%= form_with model: cart_item, url:  "/cart_items/:id", method: :patch do |f| %>
+             <%= f.hidden_field :item_id, :value => cart_item.item_id %>
+             <%= f.select :amount, [['１',1], ['２',2], ['３',3], ['４',4], ['５',5], ['６',6], ['７',7], ['８',8], ['９',9]] %>
+             <%= f.submit '変更', class: "btn btn-success" %>
+             <% end %>
+             </td>
              <td><%= cart_item.subtotal%></td>
              <td><%= link_to "Destroy", cart_item_path(cart_item), method: :delete, class: "btn btn-danger btn-block" %>
              </td>
@@ -49,7 +53,7 @@
            <% end %>
          </table>
 
-          <%= link_to "買い物を続ける", items_path %>
+          <%= link_to "買い物を続ける", root_path %>
           <%= link_to "情報入力に進む", new_order_path %>
 
       </div>

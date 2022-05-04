@@ -45,7 +45,7 @@
              <% end %>
              </td>
              <td><%= order.payment + order.postage %>円</td>
-             <td><%= order.orders_status %></td>
+             <td><%= Order.orders_statuses_i18n[order.orders_status] %></td>
              <td><%= link_to "注文詳細へ", order_path(order), class: "btn btn-success" %></td>
            </tr>
            <% end %>

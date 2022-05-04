@@ -1,31 +1,45 @@
-<div class="container">  <!-- この行を追加 -->
-  <div class="row">
-    <div class="col-md-10">
-      <% @orders.each do |order| %>
-      <h4><%= order.customer.last_name %>
-          <%= order.customer.first_name %>様の注文履歴
-          <% end%>
-      </h4>
+<table border="2">
+  <h4>注文履歴詳細</h4>
+  <tr><th>購入者</th><td><%= @customer.last_name %> <%= @customer.first_name %></td></tr>
+  <tr><th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td></tr>
+  <tr><th>配送先</th>
+  <td>〒<%= @order.sent_code %><br>
+  <%= @order.sent_address %><br>
+  <%= @order.sent_name %></td></tr>
+  <tr><th>支払方法</th><td><%= Order.payment_methods_i18n[@order.payment_method] %></td></tr>
+  <tr><th>注文ステータス</th><td><%= Order.orders_statuses_i18n[@order.orders_status] %> 更新</td></tr>
+</table>
 
-      <table class="table">
-        <tr>
-          <th>購入日時</th>
-          <th>注文個数</th>
-          <th>注文ステータス</th>
-        </tr>
-        <tr>
-          <% @orders.each do |order| %>
-          <td><%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %></td>
-          <% order.order_details.each do |order_detail| %>
-          <td><%= order_detail.amount %></td>
-          <td><%= order.orders_status %></td>
-          <% end %>
-          <% end %>
-        </tr>
-      </table>
+<table class="table">
+  <tr>
+    <th>商品名</th>
+    <th>単価（税込）</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th>制作ステータス</th>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
-  <style>
-    .table {
-      width: 100%;
-    }
-  </style>
+<table>
+  <tr>
+    <th>商品合計</th><td></td>
+  </tr>
+  <tr>
+    <th>送料</th><td></td>
+  <tr>
+    <th>請求金額合計</th><td></td>
+  </tr>
+  </tr>
+</table>
+<style>
+  .table {
+    margin-top: 10px;
+  }
+</style>

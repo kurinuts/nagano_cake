@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     # passwords: 'admin/passwords',
     # registrations: 'admin/registrations'
   }
-  
+
   namespace :admin do
     resources :items
     # resources :sessions
@@ -18,13 +18,17 @@ Rails.application.routes.draw do
     resources :customers
     resources :orders
     resources :order
+    get 'customer/views/:id' => 'customer#views'
   end
 
   scope module: :public do
     resources :items
     post 'orders/confirm' => 'orders#confirm'
     get 'orders/complete' => 'orders#complete'
-    
+    get 'unsubscribe' => 'customers#unsubscribe', as: 'customer_unsubscribe'
+    patch 'withdraw/:id' => 'customers#withdraw', as: 'withdraw_customer'
+    put 'withdraw/:id' => 'customers#withdraw'
+
     # resources :homes
     # resources :registrations
     # resources :sessions

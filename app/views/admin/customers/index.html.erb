@@ -2,7 +2,7 @@
     <div class="container">
       <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-md-12">
           <table class ="table">
         <th>会員ID</th>
         <th>氏名</th>
@@ -12,9 +12,14 @@
       <tr>
         <% @customers.each do |customer| %>
         <td><%= customer.id %></td>
-        <td><%= customer.last_name %><%= customer.first_name %></td>
+        <td><%= link_to admin_customer_path(customer) do %><%= customer.last_name %><%= customer.first_name %><% end %></td>
         <td><%= customer.email %></td>
-        <td><%= customer.is_active %></td>
+        <td>
+        <% if customer.is_deleted %>
+        退会済
+        <% else %>
+        有効
+        <% end %></td>
       </tr>
       <% end %>
     </table>
