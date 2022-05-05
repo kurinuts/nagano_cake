@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :customers
     resources :orders
     resources :order
+    patch 'orders/:id/order_details' => 'orders_details#update', as: 'order_detail'
     get 'customer/views/:id' => 'customer#views'
   end
 

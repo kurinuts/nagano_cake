@@ -13,12 +13,12 @@
         <tr><th>メールアドレス</th><td><%= f.text_field :email %></td></tr>
         <tr><th>会員ステータス</th>
         <td>
-          <%= form_with model: @customer, local: true do |f| %>
+          
           <%= f.radio_button :is_deleted, :true %>
           <%= f.label :is_deleted, "退会済" %>
           <%= f.radio_button :is_deleted, :false %>
           <%= f.label :is_deleted, "有効" %>
-          <% end %>
+          
         </td>
         </tr>
       </table>

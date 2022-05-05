@@ -6,10 +6,23 @@ end
 
 def show
 @order = Order.find(params[:id])
+@order_details = @order.order_details
 @customer = @order.customer
 end
 
-
+def update
+@order = Order.find(params[:id])
+@order.update(order_params)
+@order_details = @order.order_details.all
+if @order.orders_status == "入金確認"
+@order_details.each do |order_detail|
+order_detail.update(production_status:1)
+redirect_to admin_order_path(@order)
+end
+else
+redirect_to admin_order_path(@order)
+end
+end
 
 private
 def customer_params
