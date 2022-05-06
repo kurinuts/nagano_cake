@@ -27,7 +27,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              
+
             <% if admin_signed_in? %>
             <li class="nav-item">
               <%= link_to "商品一覧", admin_items_path, class: 'nav-link text-white' %>
@@ -43,7 +43,7 @@
             </li>
             <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-white' %>
             </li>
-              
+
             <% elsif customer_signed_in? %>
             <li class="nav-item">
               <%= link_to 'マイページ', customer_path(current_customer.id), class: 'nav-link text-white' %>
@@ -57,7 +57,7 @@
             <li class="nav-item">
               <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-white' %>
             </li>
-            
+
             <% else %>
             <li class="nav-item">
               <%= link_to "About", about_path, class: 'nav-link text-white' %>
@@ -72,10 +72,10 @@
               <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-white' %>
             </li>
             <% end %>
-            
-            
-            
-            
+
+
+
+
           </div>
         </div>
       </nav>
@@ -91,7 +91,7 @@
     <main class="mb-auto">
     <%= yield %>
     </main>
-    
+
     <footer class="text-white pt-5 pb-4">
 
       <p>Have a delicious day</p>
@@ -111,7 +111,7 @@
       footer {
         background-color: tan;
         margin-top: 20px;
-        
+
       }
 
 

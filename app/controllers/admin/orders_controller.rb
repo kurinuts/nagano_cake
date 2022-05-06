@@ -20,7 +20,7 @@ order_detail.update(production_status:1)
 redirect_to admin_order_path(@order)
 end
 else
-redirect_to admin_order_path(@order)
+render :show
 end
 end
 
